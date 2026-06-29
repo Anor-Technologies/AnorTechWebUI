@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Pre-fetch markdown content for all copy buttons to avoid Safari NotAllowedError
   // Safari requires clipboard writes to happen synchronously within user gesture
-  const copyButtons = document.querySelectorAll('.hextra-page-context-menu-copy');
+  const copyButtons = document.querySelectorAll('.anortechwebui-page-context-menu-copy');
   const contentCache = new Map();
 
   // Pre-fetch content for each button on page load
@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize dropdown toggles
-  const dropdownToggles = document.querySelectorAll('.hextra-page-context-menu-toggle');
+  const dropdownToggles = document.querySelectorAll('.anortechwebui-page-context-menu-toggle');
   dropdownToggles.forEach(toggle => {
-    const container = toggle.closest('.hextra-page-context-menu');
-    const menu = container.querySelector('.hextra-page-context-menu-dropdown');
+    const container = toggle.closest('.anortechwebui-page-context-menu');
+    const menu = container.querySelector('.anortechwebui-page-context-menu-dropdown');
     const chevron = toggle.querySelector('[data-chevron]');
 
     toggle.addEventListener('click', (e) => {
@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (t !== toggle) {
           t.dataset.state = 'closed';
           t.setAttribute('aria-expanded', 'false');
-          const otherContainer = t.closest('.hextra-page-context-menu');
-          const otherMenu = otherContainer.querySelector('.hextra-page-context-menu-dropdown');
+          const otherContainer = t.closest('.anortechwebui-page-context-menu');
+          const otherMenu = otherContainer.querySelector('.anortechwebui-page-context-menu-dropdown');
           const otherChevron = t.querySelector('[data-chevron]');
           otherMenu.classList.add('hx:hidden');
           if (otherChevron) {
@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
     // Check if click is outside any dropdown container
-    const isOutside = !e.target.closest('.hextra-page-context-menu');
+    const isOutside = !e.target.closest('.anortechwebui-page-context-menu');
     if (isOutside) {
       dropdownToggles.forEach(toggle => {
         toggle.dataset.state = 'closed';
         toggle.setAttribute('aria-expanded', 'false');
-        const container = toggle.closest('.hextra-page-context-menu');
-        const menu = container.querySelector('.hextra-page-context-menu-dropdown');
+        const container = toggle.closest('.anortechwebui-page-context-menu');
+        const menu = container.querySelector('.anortechwebui-page-context-menu-dropdown');
         const chevron = toggle.querySelector('[data-chevron]');
         menu.classList.add('hx:hidden');
         if (chevron) {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       dropdownToggles.forEach(toggle => {
         if (toggle.dataset.state === 'open') {
-          const container = toggle.closest('.hextra-page-context-menu');
+          const container = toggle.closest('.anortechwebui-page-context-menu');
           closeDropdown(container);
           toggle.focus();
         }
@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeDropdown = (container) => {
     if (!container) return;
     
-    const toggle = container.querySelector('.hextra-page-context-menu-toggle');
-    const menu = container.querySelector('.hextra-page-context-menu-dropdown');
+    const toggle = container.querySelector('.anortechwebui-page-context-menu-toggle');
+    const menu = container.querySelector('.anortechwebui-page-context-menu-dropdown');
     
     if (!toggle || !menu) return;
     
@@ -141,13 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Handle dropdown menu copy action
-  document.querySelectorAll('.hextra-page-context-menu-dropdown button[data-action="copy"]').forEach(btn => {
+  document.querySelectorAll('.anortechwebui-page-context-menu-dropdown button[data-action="copy"]').forEach(btn => {
     btn.addEventListener('click', async (e) => {
       e.stopPropagation();
-      const container = btn.closest('.hextra-page-context-menu');
+      const container = btn.closest('.anortechwebui-page-context-menu');
       if (!container) return;
       
-      const copyBtn = container.querySelector('.hextra-page-context-menu-copy');
+      const copyBtn = container.querySelector('.anortechwebui-page-context-menu-copy');
       if (!copyBtn) return;
 
       closeDropdown(container);
@@ -156,10 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Handle dropdown menu view action
-  document.querySelectorAll('.hextra-page-context-menu-dropdown button[data-action="view"]').forEach(btn => {
+  document.querySelectorAll('.anortechwebui-page-context-menu-dropdown button[data-action="view"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const container = btn.closest('.hextra-page-context-menu');
+      const container = btn.closest('.anortechwebui-page-context-menu');
       if (!container) return;
       
       const url = btn.dataset.url;

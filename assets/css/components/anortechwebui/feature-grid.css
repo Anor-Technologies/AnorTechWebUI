@@ -1,0 +1,5 @@
+.anortechwebui-feature-grid {
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(var(--anortechwebui-feature-grid-cols), minmax(0, 1fr));
+  }
+}

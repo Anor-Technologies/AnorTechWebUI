@@ -15,6 +15,6 @@ or
 {{- $attributes := .Get "attributes" | default "height=1em" }}
 {{- $icon := partial "utils/icon.html" (dict "name" $name "attributes" $attributes) -}}
 
-<span class="hx:inline-block hx:align-text-bottom hextra-icon">
+<span class="hx:inline-block hx:align-text-bottom anortechwebui-icon">
   {{- $icon | safeHTML -}}
 </span>

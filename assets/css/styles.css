@@ -28,8 +28,8 @@ body {
   --primary-hue: black;
   --primary-saturation: 100%;
   --primary-lightness: 50%;
-  --hextra-navbar-height: 100px;
-  --hextra-banner-height: 100px;
+  --anortechwebui-navbar-height: 100px;
+  --anortechwebui-banner-height: 100px;
   --menu-height: 100px; /* 60px */
   --anortech-orange: #ED7123;
 }
@@ -41,15 +41,15 @@ body {
   --anortech-orange: #ED7123;
 }
 
-@utility hextra-focus {
+@utility anortechwebui-focus {
   @apply hx:outline-none hx:ring-2 hx:ring-primary-200 hx:ring-offset-1 hx:ring-offset-primary-300 hx:dark:ring-primary-800 hx:dark:ring-offset-primary-700;
 }
 
-@utility hextra-focus-visible {
+@utility anortechwebui-focus-visible {
   @apply hx:focus-visible:outline-none hx:focus-visible:ring-2 hx:focus-visible:ring-primary-200 hx:focus-visible:ring-offset-1 hx:focus-visible:ring-offset-primary-300 hx:dark:focus-visible:ring-primary-800 hx:dark:focus-visible:ring-offset-primary-700;
 }
 
-@utility hextra-focus-visible-inset {
+@utility anortechwebui-focus-visible-inset {
   @apply hx:focus-visible:outline-none hx:focus-visible:ring-inset hx:focus-visible:ring-2 hx:focus-visible:ring-primary-200 hx:dark:focus-visible:ring-primary-800 hx:focus-visible:ring-offset-0;
 }
 
@@ -71,8 +71,8 @@ body {
 }
 
 @layer base {
-  :where(a, button, [role="tab"], [role="menuitem"], [role="menuitemradio"], input, select, textarea, [tabindex="0"]):not([class*="hextra-focus-visible"]):focus-visible {
-    @apply hx:hextra-focus;
+  :where(a, button, [role="tab"], [role="menuitem"], [role="menuitemradio"], input, select, textarea, [tabindex="0"]):not([class*="anortechwebui-focus-visible"]):focus-visible {
+    @apply hx:anortechwebui-focus;
   }
 }
 
@@ -87,7 +87,7 @@ body {
 @import "./components/navbar.css";
 @import "./components/scrollbar.css";
 @import "./components/code-copy.css";
-@import "./components/hextra/feature-grid.css";
+@import "./components/anortechwebui/feature-grid.css";
 @import "./components/jupyter.css";
 @import "./components/badge.css";
 @import "./components/toc.css";

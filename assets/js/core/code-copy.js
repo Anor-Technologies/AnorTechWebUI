@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Make scrollable code blocks focusable for keyboard users.
   const updateScrollableCodeBlocks = () => {
-    document.querySelectorAll('.hextra-code-block pre, .highlight pre').forEach(function (pre) {
+    document.querySelectorAll('.anortechwebui-code-block pre, .highlight pre').forEach(function (pre) {
       if (pre.scrollWidth > pre.clientWidth) {
         pre.setAttribute('tabindex', '0');
       } else {
@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
     resizeRaf = requestAnimationFrame(updateScrollableCodeBlocks);
   });
 
-  document.querySelectorAll('.hextra-code-copy-btn').forEach(function (button) {
+  document.querySelectorAll('.anortechwebui-code-copy-btn').forEach(function (button) {
     // Add copy and success icons
-    button.querySelector('.hextra-copy-icon')?.appendChild(getCopyIcon());
-    button.querySelector('.hextra-success-icon')?.appendChild(getSuccessIcon());
+    button.querySelector('.anortechwebui-copy-icon')?.appendChild(getCopyIcon());
+    button.querySelector('.anortechwebui-success-icon')?.appendChild(getSuccessIcon());
 
     // Add click event listener for copy button
     button.addEventListener('click', function (e) {

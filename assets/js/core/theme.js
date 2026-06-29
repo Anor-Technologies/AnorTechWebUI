@@ -3,8 +3,8 @@
   const defaultTheme = '{{ site.Params.theme.default | default `system`}}'
   const themes = ["light", "dark"];
 
-  const themeToggleButtons = document.querySelectorAll(".hextra-theme-toggle");
-  const themeToggleOptions = document.querySelectorAll(".hextra-theme-toggle-options button[role=menuitemradio]");
+  const themeToggleButtons = document.querySelectorAll(".anortechwebui-theme-toggle");
+  const themeToggleOptions = document.querySelectorAll(".anortechwebui-theme-toggle-options button[role=menuitemradio]");
 
   function applyTheme(theme) {
     theme = themes.includes(theme) ? theme : "system";
@@ -56,7 +56,7 @@
 
   // Dismiss the menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (e.target.closest('.hextra-theme-toggle') === null) {
+    if (e.target.closest('.anortechwebui-theme-toggle') === null) {
       themeToggleButtons.forEach((toggler) => {
         toggler.dataset.state = 'closed';
         toggler.setAttribute('aria-expanded', 'false');
@@ -66,7 +66,7 @@
   });
 
   // Keyboard navigation for the theme menu
-  document.querySelectorAll('.hextra-theme-toggle-options[role=menu]').forEach(function (menu) {
+  document.querySelectorAll('.anortechwebui-theme-toggle-options[role=menu]').forEach(function (menu) {
     menu.addEventListener('keydown', function (e) {
       const items = Array.from(menu.querySelectorAll('button[role=menuitemradio]'));
       const currentIndex = items.indexOf(document.activeElement);

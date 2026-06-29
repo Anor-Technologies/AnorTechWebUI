@@ -110,7 +110,7 @@ Render Jupyter Notebook
 {{- end -}}
 
 {{- with index $data "cells" -}}
-  <div class="hextra-jupyter-notebook">
+  <div class="anortechwebui-jupyter-notebook">
   {{- range $cell := . -}}
     {{- $meta := index $cell "metadata" | default (dict) -}}
     {{- $tags := index $meta "tags" | default slice -}}
@@ -132,11 +132,11 @@ Render Jupyter Notebook
       {{- $sourceContent := (cond (reflect.IsSlice $source) (delimit $source "") $source) -}}
 {{- with ($sourceContent | strings.Chomp) -}}
 {{- if $showPrompts -}}
-<div class="hextra-jupyter-prompt-row">
-  <div class="hextra-jupyter-prompt hextra-jupyter-prompt-in">In [{{- $promptNum -}}]:</div>
-  <div class="hextra-jupyter-prompt-content">
+<div class="anortechwebui-jupyter-prompt-row">
+  <div class="anortechwebui-jupyter-prompt anortechwebui-jupyter-prompt-in">In [{{- $promptNum -}}]:</div>
+  <div class="anortechwebui-jupyter-prompt-content">
 {{- end -}}
-<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+<div class="anortechwebui-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
   {{- partial "components/codeblock" (dict "lang" $language "content" .) -}}
   {{- if or (eq site.Params.highlight.copy.enable nil) (site.Params.highlight.copy.enable) -}}
     {{- partialCached "components/codeblock-copy-button" (dict "filename" "") "" -}}
@@ -160,25 +160,25 @@ Render Jupyter Notebook
           {{- end -}}
         {{- end -}}
 {{- if $showPrompts -}}
-<div class="hextra-jupyter-prompt-row">
+<div class="anortechwebui-jupyter-prompt-row">
   {{- if ($ps.Get "hasExecResult") -}}
-  <div class="hextra-jupyter-prompt hextra-jupyter-prompt-out">Out[{{- $promptNum -}}]:</div>
+  <div class="anortechwebui-jupyter-prompt anortechwebui-jupyter-prompt-out">Out[{{- $promptNum -}}]:</div>
   {{- else -}}
-  <div class="hextra-jupyter-prompt"></div>
+  <div class="anortechwebui-jupyter-prompt"></div>
   {{- end -}}
-  <div class="hextra-jupyter-prompt-content">
+  <div class="anortechwebui-jupyter-prompt-content">
 {{- end -}}
-      <div class="hextra-jupyter-code-cell hextra-scrollbar">
+      <div class="anortechwebui-jupyter-code-cell anortechwebui-scrollbar">
         {{- if eq (printf "%v" $collapsed) "true" -}}
         <details>
-          <summary class="hextra-jupyter-output-summary" aria-label="Toggle output">Output</summary>
+          <summary class="anortechwebui-jupyter-output-summary" aria-label="Toggle output">Output</summary>
         {{- end -}}
-          <div class="hextra-jupyter-code-cell-outputs-container">
-            {{- $outputsClass := "hextra-jupyter-code-cell-outputs" -}}
+          <div class="anortechwebui-jupyter-code-cell-outputs-container">
+            {{- $outputsClass := "anortechwebui-jupyter-code-cell-outputs" -}}
             {{- if eq (printf "%v" $scrolled) "true" -}}
-              {{- $outputsClass = printf "%s hextra-jupyter-code-cell-outputs-scrolled" $outputsClass -}}
+              {{- $outputsClass = printf "%s anortechwebui-jupyter-code-cell-outputs-scrolled" $outputsClass -}}
             {{- else if eq (printf "%v" $scrolled) "false" -}}
-              {{- $outputsClass = printf "%s hextra-jupyter-code-cell-outputs-unscrolled" $outputsClass -}}
+              {{- $outputsClass = printf "%s anortechwebui-jupyter-code-cell-outputs-unscrolled" $outputsClass -}}
             {{- end -}}
             <div class="{{ $outputsClass }}" tabindex="0">
               {{- range $output := . -}}
@@ -218,15 +218,15 @@ Render Jupyter Notebook
                         {{- if eq $mime "text/html" -}}
                           {{- $htmlContent := replaceRE `(?s)<style[^>]*>.*?</style>` "" $content -}}
                           {{- if $isolated -}}
-                            <iframe class="hextra-jupyter-isolated-output" sandbox srcdoc="{{ $htmlContent | transform.HTMLEscape | safeHTMLAttr }}" title="HTML output"></iframe>
+                            <iframe class="anortechwebui-jupyter-isolated-output" sandbox srcdoc="{{ $htmlContent | transform.HTMLEscape | safeHTMLAttr }}" title="HTML output"></iframe>
                           {{- else -}}
-                            <div class="hextra-jupyter-html not-prose">{{- $htmlContent | safeHTML -}}</div>
+                            <div class="anortechwebui-jupyter-html not-prose">{{- $htmlContent | safeHTML -}}</div>
                           {{- end -}}
                         {{- else if eq $mime "image/svg+xml" -}}
                           {{- if $isolated -}}
-                            <iframe class="hextra-jupyter-isolated-output" sandbox srcdoc="{{ $content | transform.HTMLEscape | safeHTMLAttr }}" title="SVG output"></iframe>
+                            <iframe class="anortechwebui-jupyter-isolated-output" sandbox srcdoc="{{ $content | transform.HTMLEscape | safeHTMLAttr }}" title="SVG output"></iframe>
                           {{- else -}}
-                            <div class="hextra-jupyter-svg" role="img" aria-label="SVG output">{{- $content | safeHTML -}}</div>
+                            <div class="anortechwebui-jupyter-svg" role="img" aria-label="SVG output">{{- $content | safeHTML -}}</div>
                           {{- end -}}
                         {{- else if eq $mime "image/png" -}}
                           <img src="data:image/png;base64,{{- $content -}}" alt="Output image" {{ $imageAttrs | safeHTMLAttr }} />
@@ -244,7 +244,7 @@ Render Jupyter Notebook
                               <pre class="not-prose">{{- $content -}}</pre>
                             {{- else -}}
                               {{- $page.Store.Set "hasMath" true -}}
-                              <div class="hextra-jupyter-latex" tabindex="0">{{- .Value -}}</div>
+                              <div class="anortechwebui-jupyter-latex" tabindex="0">{{- .Value -}}</div>
                             {{- end -}}
                           {{- end -}}
                         {{- else if eq $mime "text/plain" -}}
@@ -264,13 +264,13 @@ Render Jupyter Notebook
                   {{- $text := index $output "text" -}}
                   {{- $textContent := (cond (reflect.IsSlice $text) (delimit $text "") $text) -}}
                   {{- $textClean := replaceRE `\x1b\[[0-9;]*[A-Za-z]` "" $textContent -}}
-                  <pre class="not-prose{{ if eq $streamName "stderr" }} hextra-jupyter-stream-stderr{{ end }}">{{- $textClean -}}</pre>
+                  <pre class="not-prose{{ if eq $streamName "stderr" }} anortechwebui-jupyter-stream-stderr{{ end }}">{{- $textClean -}}</pre>
 
                 {{- else if eq $outputType "error" -}}
                   {{- $traceback := index $output "traceback" -}}
                   {{- $tbContent := cond (reflect.IsSlice $traceback) (delimit $traceback "") $traceback -}}
                   {{- $tbClean := replaceRE `\x1b\[[0-9;]*[A-Za-z]` "" $tbContent -}}
-                  <pre class="not-prose hextra-jupyter-error" role="alert">{{- $tbClean -}}</pre>
+                  <pre class="not-prose anortechwebui-jupyter-error" role="alert">{{- $tbClean -}}</pre>
 
                 {{- end -}}
               {{- end -}}
@@ -295,10 +295,10 @@ Render Jupyter Notebook
         {{- $source := index $cell "source" -}}
         {{- $sourceContent := (cond (reflect.IsSlice $source) (delimit $source "") $source) -}}
         {{- with ($sourceContent | strings.Chomp) -}}
-          <div class="hextra-jupyter-code-cell hextra-scrollbar">
-            <div class="hextra-jupyter-code-cell-outputs-container">
-              <div class="hextra-jupyter-code-cell-outputs" tabindex="0">
-                <pre class="hextra-jupyter-raw-cell not-prose">{{- . -}}</pre>
+          <div class="anortechwebui-jupyter-code-cell anortechwebui-scrollbar">
+            <div class="anortechwebui-jupyter-code-cell-outputs-container">
+              <div class="anortechwebui-jupyter-code-cell-outputs" tabindex="0">
+                <pre class="anortechwebui-jupyter-raw-cell not-prose">{{- . -}}</pre>
               </div>
             </div>
           </div>

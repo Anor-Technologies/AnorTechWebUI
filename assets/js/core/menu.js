@@ -1,8 +1,8 @@
 // Hamburger menu for mobile navigation
 
 document.addEventListener('DOMContentLoaded', function () {
-  const menu = document.querySelector('.hextra-hamburger-menu');
-  const sidebarContainer = document.querySelector('.hextra-sidebar-container');
+  const menu = document.querySelector('.anortechwebui-hamburger-menu');
+  const sidebarContainer = document.querySelector('.anortechwebui-sidebar-container');
   const mobileQuery = window.matchMedia('(max-width: 767px)');
 
   function isMenuOpen() {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Close menu on Escape key (mobile only)
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (document.getElementById('hextra-search-dialog')?.open) return;
+    if (document.getElementById('anortechwebui-search-dialog')?.open) return;
     if (mobileQuery.matches && isMenuOpen()) {
       toggleMenu();
     }

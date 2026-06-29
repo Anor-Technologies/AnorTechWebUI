@@ -4,17 +4,17 @@ A shortcode for displaying a feature grid.
 @param {string} cols The number of columns.
 @param {string} style The style of the grid.
 
-@example {{< hextra/feature-grid cols="3" >}}{{< /hextra/feature-grid >}}
+@example {{< anortechwebui/feature-grid cols="3" >}}{{< /anortechwebui/feature-grid >}}
 */ -}}
 
 {{- $cols := .Get "cols" | default 3 -}}
 {{- $style := .Get "style" | default "" -}}
 
-{{- $css := printf "--hextra-feature-grid-cols: %v; %s" $cols $style -}}
+{{- $css := printf "--anortechwebui-feature-grid-cols: %v; %s" $cols $style -}}
 
 
 <div
-  class="hextra-feature-grid hx:grid hx:sm:max-lg:grid-cols-2 hx:max-sm:grid-cols-1 hx:gap-4 hx:w-full not-prose"
+  class="anortechwebui-feature-grid hx:grid hx:sm:max-lg:grid-cols-2 hx:max-sm:grid-cols-1 hx:gap-4 hx:w-full not-prose"
   {{ with $css }}style="{{ . | safeCSS }}"{{ end }}
 >
   {{ .Inner }}

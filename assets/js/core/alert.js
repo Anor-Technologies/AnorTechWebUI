@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".hextra-alert[data-alert-fold]").forEach(function (alert) {
-    const button = alert.querySelector(".hextra-alert-toggle");
-    const content = alert.querySelector(".hextra-alert-content");
+  document.querySelectorAll(".anortechwebui-alert[data-alert-fold]").forEach(function (alert) {
+    const button = alert.querySelector(".anortechwebui-alert-toggle");
+    const content = alert.querySelector(".anortechwebui-alert-content");
     if (!button || !content) {
       return;
     }

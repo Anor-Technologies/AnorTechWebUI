@@ -1,7 +1,7 @@
 // Script for filetree shortcode collapsing/expanding folders used in the theme
 // ======================================================================
 document.addEventListener("DOMContentLoaded", function () {
-  const folders = document.querySelectorAll(".hextra-filetree-folder");
+  const folders = document.querySelectorAll(".anortechwebui-filetree-folder");
   folders.forEach(function (folder) {
     folder.addEventListener("click", function () {
       Array.from(folder.children).forEach(function (el) {

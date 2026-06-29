@@ -28,7 +28,7 @@
   {{- $gap = "0.5rem" -}}
 {{- end -}}
 
-{{- $id := printf "hextra-gallery-%d" .Ordinal -}}
+{{- $id := printf "anortechwebui-gallery-%d" .Ordinal -}}
 {{- $trackId := printf "%s-track" $id -}}
 {{- $statusId := printf "%s-status" $id -}}
 
@@ -39,25 +39,25 @@
 
 <div
   id="{{ $id }}"
-  class="hextra-gallery hextra-gallery--{{ $type }} not-prose"
+  class="anortechwebui-gallery anortechwebui-gallery--{{ $type }} not-prose"
   data-pswp-gallery="#{{ $id }}"
-  style="--hextra-gallery-cols: {{ $cols }}; --hextra-gallery-gap: {{ $gap }};"
+  style="--anortechwebui-gallery-cols: {{ $cols }}; --anortechwebui-gallery-gap: {{ $gap }};"
   {{- if eq $type "carousel" }}
     role="region" aria-roledescription="carousel" aria-label="{{ $regionLabel }}"
   {{- end }}
 >
   {{- if eq $type "carousel" -}}
-    <button type="button" class="hextra-gallery__nav hextra-gallery__nav--prev" data-gallery-prev aria-label="{{ (T "previousImage") | default "Previous image" }}" aria-controls="{{ $trackId }}">
+    <button type="button" class="anortechwebui-gallery__nav anortechwebui-gallery__nav--prev" data-gallery-prev aria-label="{{ (T "previousImage") | default "Previous image" }}" aria-controls="{{ $trackId }}">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
         <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6" />
       </svg>
     </button>
-    <button type="button" class="hextra-gallery__nav hextra-gallery__nav--next" data-gallery-next aria-label="{{ (T "nextImage") | default "Next image" }}" aria-controls="{{ $trackId }}">
+    <button type="button" class="anortechwebui-gallery__nav anortechwebui-gallery__nav--next" data-gallery-next aria-label="{{ (T "nextImage") | default "Next image" }}" aria-controls="{{ $trackId }}">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
         <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6" />
       </svg>
     </button>
-    <div id="{{ $trackId }}" class="hextra-gallery__track hextra-scrollbar" tabindex="0" aria-describedby="{{ $statusId }}">
+    <div id="{{ $trackId }}" class="anortechwebui-gallery__track anortechwebui-scrollbar" tabindex="0" aria-describedby="{{ $statusId }}">
       {{- .Inner -}}
     </div>
     <div id="{{ $statusId }}" class="hx:sr-only" aria-live="polite" role="status" data-gallery-status></div>

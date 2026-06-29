@@ -1,56 +1,56 @@
 @supports (
   (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
 ) {
-  .hextra-nav-container-blur {
+  .anortechwebui-nav-container-blur {
     @apply hx:bg-none;
   }
 }
 
 @media (max-width: 48rem) {
-  [data-hextra-banner="visible"] .hextra-nav-container-blur {
+  [data-anortechwebui-banner="visible"] .anortechwebui-nav-container-blur {
     background-color: var(--anortech-orange) !important;
-    height: max(100%, var(--hextra-banner-height));
+    height: max(100%, var(--anortechwebui-banner-height));
   }
 
-  .dark[data-hextra-banner="visible"] .hextra-nav-container-blur {
+  .dark[data-anortechwebui-banner="visible"] .anortechwebui-nav-container-blur {
     background-color: var(--anortech-orange) !important;
-    height: max(100%, var(--hextra-banner-height));
+    height: max(100%, var(--anortechwebui-banner-height));
   }
 }
 
 /* Hamburger Menu - Flattened Structure */
-.hextra-hamburger-menu svg g {
+.anortechwebui-hamburger-menu svg g {
   @apply hx:origin-center hx:transition-all hx:duration-100 hx:ease-out;
 }
 
-.hextra-hamburger-menu svg path {
+.anortechwebui-hamburger-menu svg path {
   @apply hx:opacity-100 hx:transition-all hx:duration-100 hx:ease-out hx:delay-100;
 }
 
-.hextra-hamburger-menu svg.open path {
+.anortechwebui-hamburger-menu svg.open path {
   @apply hx:transition-transform hx:duration-100 hx:ease-out hx:delay-0;
 }
 
-.hextra-hamburger-menu svg.open g {
+.anortechwebui-hamburger-menu svg.open g {
   @apply hx:transition-transform hx:duration-100 hx:ease-out hx:delay-100;
 }
 
-.hextra-hamburger-menu svg.open > path {
+.anortechwebui-hamburger-menu svg.open > path {
   @apply hx:opacity-0;
 }
 
-.hextra-hamburger-menu svg.open > g:nth-of-type(1) {
+.anortechwebui-hamburger-menu svg.open > g:nth-of-type(1) {
   @apply hx:rotate-45;
 }
 
-.hextra-hamburger-menu svg.open > g:nth-of-type(1) path {
+.anortechwebui-hamburger-menu svg.open > g:nth-of-type(1) path {
   @apply hx:translate-y-1;
 }
 
-.hextra-hamburger-menu svg.open > g:nth-of-type(2) {
+.anortechwebui-hamburger-menu svg.open > g:nth-of-type(2) {
   @apply hx:-rotate-45;
 }
 
-.hextra-hamburger-menu svg.open > g:nth-of-type(2) path {
+.anortechwebui-hamburger-menu svg.open > g:nth-of-type(2) path {
   @apply hx:-translate-y-1;
 }

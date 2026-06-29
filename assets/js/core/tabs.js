@@ -1,6 +1,6 @@
 (function () {
   function updateGroup(container, index) {
-    const tabs = Array.from(container.querySelectorAll('.hextra-tabs-toggle'));
+    const tabs = Array.from(container.querySelectorAll('.anortechwebui-tabs-toggle'));
     tabs.forEach((tab, i) => {
       tab.dataset.state = i === index ? 'selected' : '';
       if (i === index) {
@@ -28,17 +28,17 @@
 
   syncGroups.forEach((group) => {
     const key = encodeURIComponent(group.dataset.tabGroup);
-    const saved = localStorage.getItem('hextra-tab-' + key);
+    const saved = localStorage.getItem('anortechwebui-tab-' + key);
     if (saved !== null) {
       updateGroup(group, parseInt(saved, 10));
     }
   });
 
-  document.querySelectorAll('.hextra-tabs-toggle').forEach((button) => {
+  document.querySelectorAll('.anortechwebui-tabs-toggle').forEach((button) => {
     button.addEventListener('click', function (e) {
       const targetButton = e.currentTarget;
       const container = targetButton.parentElement;
-      const index = Array.from(container.querySelectorAll('.hextra-tabs-toggle')).indexOf(
+      const index = Array.from(container.querySelectorAll('.anortechwebui-tabs-toggle')).indexOf(
         targetButton
       );
 
@@ -49,7 +49,7 @@
         document
           .querySelectorAll('[data-tab-group="' + tabGroupValue + '"]')
           .forEach((grp) => updateGroup(grp, index));
-        localStorage.setItem('hextra-tab-' + key, index.toString());
+        localStorage.setItem('anortechwebui-tab-' + key, index.toString());
       } else {
         // Non-sync behavior: update only this specific tab group
         updateGroup(container, index);
@@ -59,7 +59,7 @@
     // Keyboard navigation for tabs
     button.addEventListener('keydown', function (e) {
       const container = button.parentElement;
-      const tabs = Array.from(container.querySelectorAll('.hextra-tabs-toggle'));
+      const tabs = Array.from(container.querySelectorAll('.anortechwebui-tabs-toggle'));
       const currentIndex = tabs.indexOf(button);
       let newIndex;
 
@@ -92,7 +92,7 @@
         document
           .querySelectorAll('[data-tab-group="' + tabGroupValue + '"]')
           .forEach((grp) => updateGroup(grp, newIndex));
-        localStorage.setItem('hextra-tab-' + key, newIndex.toString());
+        localStorage.setItem('anortechwebui-tab-' + key, newIndex.toString());
       } else {
         updateGroup(container, newIndex);
       }

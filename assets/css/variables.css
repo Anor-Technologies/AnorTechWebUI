@@ -12,24 +12,24 @@
 */
 
 :root {
-  --hextra-max-page-width: {{ $maxPageWidth }};
-  --hextra-max-content-width: {{ $maxContentWidth }};
-  --hextra-max-navbar-width: {{ $maxNavbarWidth }};
-  --hextra-max-footer-width: {{ $maxFooterWidth }};
+  --anortechwebui-max-page-width: {{ $maxPageWidth }};
+  --anortechwebui-max-content-width: {{ $maxContentWidth }};
+  --anortechwebui-max-navbar-width: {{ $maxNavbarWidth }};
+  --anortechwebui-max-footer-width: {{ $maxFooterWidth }};
 }
 
-.hextra-max-page-width {
-  max-width: var(--hextra-max-page-width);
+.anortechwebui-max-page-width {
+  max-width: var(--anortechwebui-max-page-width);
 }
 
-.hextra-max-content-width {
-  max-width: var(--hextra-max-content-width);
+.anortechwebui-max-content-width {
+  max-width: var(--anortechwebui-max-content-width);
 }
 
-.hextra-max-navbar-width {
-  max-width: var(--hextra-max-navbar-width);
+.anortechwebui-max-navbar-width {
+  max-width: var(--anortechwebui-max-navbar-width);
 }
 
-.hextra-max-footer-width {
-  max-width: var(--hextra-max-footer-width);
+.anortechwebui-max-footer-width {
+  max-width: var(--anortechwebui-max-footer-width);
 }

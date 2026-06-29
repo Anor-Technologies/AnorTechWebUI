@@ -12,10 +12,10 @@
 {{- if $icon -}}
   <button
     type="button"
-    class="hx:p-1 hx:md:p-2 hx:text-current hx:cursor-pointer hx:hextra-focus-visible"
+    class="hx:p-1 hx:md:p-2 hx:text-current hx:cursor-pointer hx:anortechwebui-focus-visible"
     data-search-open
     aria-haspopup="dialog"
-    aria-controls="hextra-search-dialog"
+    aria-controls="anortechwebui-search-dialog"
     aria-label="{{ $placeholder }}"
     title="{{ $placeholder }}"
   >
@@ -25,14 +25,14 @@
 {{- else -}}
   <button
     type="button"
-    class="hextra-search-trigger"
+    class="anortechwebui-search-trigger"
     data-search-open
     aria-haspopup="dialog"
-    aria-controls="hextra-search-dialog"
+    aria-controls="anortechwebui-search-dialog"
     aria-label="{{ $placeholder }}"
   >
-    {{- partial "utils/icon.html" (dict "name" "search" "attributes" `class="hextra-search-trigger-icon" focusable="false"`) -}}
-    <span class="hextra-search-trigger-label">{{ $placeholder }}</span>
-    <kbd class="hextra-search-trigger-kbd">CTRL K</kbd>
+    {{- partial "utils/icon.html" (dict "name" "search" "attributes" `class="anortechwebui-search-trigger-icon" focusable="false"`) -}}
+    <span class="anortechwebui-search-trigger-label">{{ $placeholder }}</span>
+    <kbd class="anortechwebui-search-trigger-kbd">CTRL K</kbd>
   </button>
 {{- end -}}

@@ -2,13 +2,13 @@
  * TOC Scroll - Highlights active TOC links based on visible headings
  * 
  * Uses Intersection Observer to track heading visibility and applies
- * 'hextra-toc-active' class to corresponding TOC links. Selects the
+ * 'anortechwebui-toc-active' class to corresponding TOC links. Selects the
  * topmost heading when multiple are visible.
  * 
- * Requires: .hextra-toc element, matching heading IDs, toc.css styles
+ * Requires: .anortechwebui-toc element, matching heading IDs, toc.css styles
  */
 document.addEventListener("DOMContentLoaded", function () {
-  const toc = document.querySelector(".hextra-toc");
+  const toc = document.querySelector(".anortechwebui-toc");
   if (!toc) return;
 
   const tocLinks = toc.querySelectorAll('a[href^="#"]');
@@ -46,12 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (targetLink && targetLink !== currentActiveLink) {
         // Remove active class from previous link
         if (currentActiveLink) {
-          currentActiveLink.classList.remove("hextra-toc-active");
+          currentActiveLink.classList.remove("anortechwebui-toc-active");
           currentActiveLink.removeAttribute("aria-current");
         }
 
         // Add active class to current link
-        targetLink.classList.add("hextra-toc-active");
+        targetLink.classList.add("anortechwebui-toc-active");
         targetLink.setAttribute("aria-current", "location");
         currentActiveLink = targetLink;
       }
@@ -75,10 +75,10 @@ document.addEventListener("DOMContentLoaded", function () {
         isHashNavigation = true;
 
         if (currentActiveLink) {
-          currentActiveLink.classList.remove("hextra-toc-active");
+          currentActiveLink.classList.remove("anortechwebui-toc-active");
           currentActiveLink.removeAttribute("aria-current");
         }
-        targetLink.classList.add("hextra-toc-active");
+        targetLink.classList.add("anortechwebui-toc-active");
         targetLink.setAttribute("aria-current", "location");
         currentActiveLink = targetLink;
 

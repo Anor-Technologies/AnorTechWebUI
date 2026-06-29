@@ -1,6 +1,6 @@
 (function () {
   const hiddenClass = "hx:hidden";
-  const dropdownToggles = document.querySelectorAll(".hextra-nav-menu-toggle");
+  const dropdownToggles = document.querySelectorAll(".anortechwebui-nav-menu-toggle");
   const closeDropdown = (toggle, focusToggle = false) => {
     toggle.dataset.state = "closed";
     toggle.setAttribute("aria-expanded", "false");
@@ -65,7 +65,7 @@
     });
   });
 
-  document.querySelectorAll(".hextra-nav-menu-items[role=menu]").forEach((menu) => {
+  document.querySelectorAll(".anortechwebui-nav-menu-items[role=menu]").forEach((menu) => {
     menu.addEventListener("keydown", (e) => {
       const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
       if (items.length === 0) return;
@@ -106,7 +106,7 @@
 
   // Dismiss dropdown when clicking outside.
   document.addEventListener("click", (e) => {
-    if (!e.target.closest(".hextra-nav-menu-toggle") && !e.target.closest(".hextra-nav-menu-items")) {
+    if (!e.target.closest(".anortechwebui-nav-menu-toggle") && !e.target.closest(".anortechwebui-nav-menu-items")) {
       dropdownToggles.forEach((toggle) => {
         closeDropdown(toggle);
       });

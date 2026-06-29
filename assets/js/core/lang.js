@@ -1,5 +1,5 @@
 (function () {
-  const languageSwitchers = document.querySelectorAll('.hextra-language-switcher');
+  const languageSwitchers = document.querySelectorAll('.anortechwebui-language-switcher');
   const closeSwitcher = (switcher, focusSwitcher = false) => {
     switcher.dataset.state = 'closed';
     switcher.setAttribute('aria-expanded', 'false');
@@ -51,7 +51,7 @@
     });
   });
 
-  document.querySelectorAll('.hextra-language-options[role=menu]').forEach((menu) => {
+  document.querySelectorAll('.anortechwebui-language-options[role=menu]').forEach((menu) => {
     menu.addEventListener('keydown', (e) => {
       const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
       if (items.length === 0) return;
@@ -94,7 +94,7 @@
 
   // Dismiss language switcher when clicking outside.
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.hextra-language-switcher') && !e.target.closest('.hextra-language-options')) {
+    if (!e.target.closest('.anortechwebui-language-switcher') && !e.target.closest('.anortechwebui-language-options')) {
       languageSwitchers.forEach((switcher) => {
         closeSwitcher(switcher);
       });

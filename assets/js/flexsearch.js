@@ -1,6 +1,6 @@
 // FlexSearch data plane. Builds the page + section indexes lazily on first
 // use, runs queries, and returns normalized results. UI lives in
-// search-dialog.js and consumes this via `window.hextraSearch`.
+// search-dialog.js and consumes this via `window.anortechwebuiSearch`.
 
 // Render the search data as JSON.
 // {{ $searchDataFile := printf "%s.search-data.json" .Language.Lang }}
@@ -204,12 +204,12 @@
         return a._page_rk - b._page_rk;
       })
       .map((res) => ({
-        id: `hextra-search-opt-${optionId++}`,
+        id: `anortechwebui-search-opt-${optionId++}`,
         route: res.route,
         title: res.title,
         breadcrumbs: res.breadcrumbs,
         matches: res.matches.map((match) => ({
-          id: `hextra-search-opt-${optionId++}`,
+          id: `anortechwebui-search-opt-${optionId++}`,
           route: match.route,
           title: match.title,
           content: match.content
@@ -217,7 +217,7 @@
       }));
   }
 
-  window.hextraSearch = {
+  window.anortechwebuiSearch = {
     preload: preloadIndex,
     async search(query) {
       await preloadIndex();

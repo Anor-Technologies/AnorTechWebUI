@@ -139,7 +139,7 @@
           onInit: (captionEl, pswp) => {
             pswp.on("change", () => {
               const a = pswp.currSlide?.data?.element;
-              const source = a?.closest("figure")?.querySelector(".hextra-gallery__caption");
+              const source = a?.closest("figure")?.querySelector(".anortechwebui-gallery__caption");
               if (source && source.textContent.trim()) {
                 captionEl.innerHTML = source.innerHTML;
                 captionEl.style.display = "";
@@ -158,17 +158,17 @@
   };
 
   const initCarousels = () => {
-    document.querySelectorAll(".hextra-gallery--carousel").forEach((el) => {
+    document.querySelectorAll(".anortechwebui-gallery--carousel").forEach((el) => {
       if (el.dataset.carouselInited === "1") return;
-      const track = el.querySelector(".hextra-gallery__track");
+      const track = el.querySelector(".anortechwebui-gallery__track");
       const prev = el.querySelector("[data-gallery-prev]");
       const next = el.querySelector("[data-gallery-next]");
       const status = el.querySelector("[data-gallery-status]");
       if (!track) return;
-      const items = Array.from(track.querySelectorAll(".hextra-gallery__item"));
+      const items = Array.from(track.querySelectorAll(".anortechwebui-gallery__item"));
 
       const slideWidth = () => {
-        const first = track.querySelector(".hextra-gallery__item");
+        const first = track.querySelector(".anortechwebui-gallery__item");
         if (!first) return track.clientWidth;
         const style = window.getComputedStyle(track);
         const gap = parseFloat(style.columnGap || style.gap || "0") || 0;

@@ -2,10 +2,10 @@
 
 // {{- if site.Params.banner }}
 if (localStorage.getItem('{{ site.Params.banner.key | default `banner-closed` }}')) {
-  document.documentElement.style.setProperty("--hextra-banner-height", "0px");
-  document.documentElement.classList.add("hextra-banner-hidden");
-  document.documentElement.dataset.hextraBanner = "hidden";
+  document.documentElement.style.setProperty("--anortechwebui-banner-height", "0px");
+  document.documentElement.classList.add("anortechwebui-banner-hidden");
+  document.documentElement.dataset.anortechwebuiBanner = "hidden";
 } else {
-  document.documentElement.dataset.hextraBanner = "visible";
+  document.documentElement.dataset.anortechwebuiBanner = "visible";
 }
 // {{- end }}

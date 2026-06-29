@@ -1,5 +1,5 @@
 // Search command palette UI. Owns the <dialog>, keyboard shortcuts, result
-// rendering, and animations. Reads data from `window.hextraSearch` (defined
+// rendering, and animations. Reads data from `window.anortechwebuiSearch` (defined
 // in flexsearch.js).
 
 // {{ $noResultsFound := (T "noResultsFound") | default "No results found." }}
@@ -25,18 +25,18 @@
   document.addEventListener('DOMContentLoaded', init);
 
   function init() {
-    dialog = document.getElementById('hextra-search-dialog');
+    dialog = document.getElementById('anortechwebui-search-dialog');
     if (!dialog) return;
 
-    input = dialog.querySelector('.hextra-search-input');
-    resultsEl = dialog.querySelector('.hextra-search-results');
+    input = dialog.querySelector('.anortechwebui-search-input');
+    resultsEl = dialog.querySelector('.anortechwebui-search-results');
     emptyEl = dialog.querySelector('[data-search-empty]');
-    statusEl = dialog.querySelector('.hextra-search-status');
+    statusEl = dialog.querySelector('.anortechwebui-search-status');
     viewportEl = dialog.querySelector('[data-search-viewport]');
     innerEl = dialog.querySelector('[data-search-inner]');
 
     if (isMac) {
-      document.querySelectorAll('.hextra-search-trigger-kbd').forEach(el => {
+      document.querySelectorAll('.anortechwebui-search-trigger-kbd').forEach(el => {
         while (el.firstChild) el.removeChild(el.firstChild);
         const cmd = document.createElement('span');
         cmd.style.fontSize = '0.75rem';
@@ -148,7 +148,7 @@
       input.focus();
       input.select();
     });
-    if (window.hextraSearch) window.hextraSearch.preload().catch(() => {});
+    if (window.anortechwebuiSearch) window.anortechwebuiSearch.preload().catch(() => {});
   }
 
   function cancelClose() {
@@ -191,7 +191,7 @@
     // The backdrop animation is the longest — wait for it so neither layer
     // gets cut off when the dialog is removed from the top layer.
     closeAnimationListener = (e) => {
-      if (e.animationName !== 'hextra-search-backdrop-out') return;
+      if (e.animationName !== 'anortechwebui-search-backdrop-out') return;
       finalize();
     };
     dialog.addEventListener('animationend', closeAnimationListener);
@@ -331,16 +331,16 @@
       }, 250);
       return;
     }
-    if (!window.hextraSearch) return;
+    if (!window.anortechwebuiSearch) return;
     let results;
     try {
-      results = await window.hextraSearch.search(query);
+      results = await window.anortechwebuiSearch.search(query);
     } catch (err) {
       // Stale failure for an old query — ignore. Otherwise log and fall
       // through to an empty render so the user sees feedback instead of stale
       // results.
       if (input.value.trim() !== query) return;
-      console.warn('[hextra-search]', err);
+      console.warn('[anortechwebui-search]', err);
       results = [];
     }
     // Drop stale results if the input changed during the await.
@@ -367,7 +367,7 @@
         container.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
       }
       const span = document.createElement('span');
-      span.className = 'hextra-search-match';
+      span.className = 'anortechwebui-search-match';
       span.textContent = match[0];
       container.appendChild(span);
       lastIndex = match.index + match[0].length;
@@ -379,7 +379,7 @@
 
   function createBreadcrumbSeparator() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.classList.add('hextra-search-crumb-separator');
+    svg.classList.add('anortechwebui-search-crumb-separator');
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('fill', 'none');
     svg.setAttribute('stroke', 'currentColor');
@@ -439,14 +439,14 @@
 
       if (result.breadcrumbs && result.breadcrumbs.length) {
         const crumb = document.createElement('div');
-        crumb.className = 'hextra-search-crumb';
+        crumb.className = 'anortechwebui-search-crumb';
         crumb.setAttribute('aria-label', result.breadcrumbs.join(' > '));
         appendBreadcrumb(crumb, result.breadcrumbs);
         link.appendChild(crumb);
       }
 
       const title = document.createElement('div');
-      title.className = 'hextra-search-title';
+      title.className = 'anortechwebui-search-title';
       appendHighlightedText(title, result.title, query);
       link.appendChild(title);
 
@@ -460,7 +460,7 @@
 
         const excerptLi = document.createElement('li');
         excerptLi.setAttribute('role', 'presentation');
-        excerptLi.classList.add('hextra-search-child');
+        excerptLi.classList.add('anortechwebui-search-child');
 
         const excerptLink = document.createElement('a');
         excerptLink.id = match.id;
@@ -475,14 +475,14 @@
 
         if (match.title && match.title !== result.title) {
           const title = document.createElement('div');
-          title.className = 'hextra-search-title';
+          title.className = 'anortechwebui-search-title';
           appendHighlightedText(title, match.title, query);
           excerptLink.appendChild(title);
         }
 
         if (hasExcerpt) {
           const excerpt = document.createElement('div');
-          excerpt.className = 'hextra-search-excerpt';
+          excerpt.className = 'anortechwebui-search-excerpt';
           appendHighlightedText(excerpt, match.content, query);
           excerptLink.appendChild(excerpt);
         }

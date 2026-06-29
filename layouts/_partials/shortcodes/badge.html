@@ -29,7 +29,7 @@
 
 {{- $borderClass := cond (eq $border true) "hx:border" "" -}}
 {{- $badgeClass := or ($styleClass.Get $color) ($styleClass.Get "gray") -}}
-<div class="hextra-badge {{ $class }}">
+<div class="anortechwebui-badge {{ $class }}">
   <div class="hx:inline-flex hx:gap-1 hx:items-center hx:rounded-full hx:px-2.5 hx:leading-6 hx:text-[.65rem] {{ $borderClass }} {{ $badgeClass }}">
     {{- with $icon -}}{{- partial "utils/icon" (dict "name" . "attributes" "height=12") -}}{{- end -}}
     {{- $content -}}

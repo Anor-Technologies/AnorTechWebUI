@@ -1,8 +1,8 @@
-.hextra-banner-hidden .hextra-banner {
+.anortechwebui-banner-hidden .anortechwebui-banner {
   display: none;
 }
 
-.hextra-banner {
+.anortechwebui-banner {
   :where(a):not(:where([class~=not-prose],[class~=not-prose] *)) {
     @apply hx:underline hx:decoration-from-font;
   }

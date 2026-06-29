@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function enableCollapsibles() {
-  const buttons = document.querySelectorAll(".hextra-sidebar-collapsible-button");
+  const buttons = document.querySelectorAll(".anortechwebui-sidebar-collapsible-button");
   buttons.forEach(function (button) {
     button.addEventListener("click", function (e) {
       e.preventDefault();
@@ -18,8 +18,8 @@ function enableCollapsibles() {
 }
 
 function scrollToActiveItem() {
-  const sidebarScrollbar = document.querySelector("aside.hextra-sidebar-container > .hextra-scrollbar");
-  const activeItems = document.querySelectorAll(".hextra-sidebar-active-item");
+  const sidebarScrollbar = document.querySelector("aside.anortechwebui-sidebar-container > .anortechwebui-scrollbar");
+  const activeItems = document.querySelectorAll(".anortechwebui-sidebar-active-item");
   const visibleActiveItem = Array.from(activeItems).find(function (activeItem) {
     return activeItem.getBoundingClientRect().height > 0;
   });
