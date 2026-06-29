@@ -1,0 +1,11 @@
+name = "AnorTechWebUI"
+license = "MIT"
+licenselink = "https://github.com/Anor-Technologies/AnorTechWebUI/blob/main/LICENSE"
+description = "Centralized Hugo UI theme for Anor Technologies websites."
+homepage = "https://github.com/Anor-Technologies/AnorTechWebUI"
+tags = ["Responsive", "Dark Mode", "Search", "Multilingual", "Clean", "Minimal"]
+features = ["Responsive", "Dark Mode", "Search", "Syntax Highlighting", "Multilingual", "RSS"]
+min_version = "0.146.0"
+
+[author]
+  name = "Anor Technologies Pte Ltd"
