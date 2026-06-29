@@ -8,3 +8,7 @@ Consumed by child sites via Hugo Modules:
   [[module.imports]]
     path = "github.com/Anor-Technologies/AnorTechWebUI"
 ```
+
+## Credits
+
+Built and maintained by [Conan Zhang](https://isolatedcommand.com/who-we-are/conanzhangtech/).
