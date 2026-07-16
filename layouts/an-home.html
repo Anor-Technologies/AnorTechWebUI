@@ -1,0 +1,166 @@
+{{ define "main" }}
+{{ $u := dict "platform" ("/what-we-do" | relLangURL) "reg" ("/what-we-do/regulatory-intelligence" | relLangURL) "ai" ("/what-we-do/ai-driven-analysis" | relLangURL) "api" ("/what-we-do/api-first-integration" | relLangURL) "contact" ("/contact-us" | relLangURL) }}
+<div class="anor">
+
+  {{/* ---------- HERO ---------- */}}
+  <section class="an-hero">
+    <div class="an-container an-hero-grid">
+      <div class="an-hero-copy an-reveal">
+        <p class="an-eyebrow">Regulatory technology · Singapore</p>
+        <h1>Compliance infrastructure for banks in Southeast&nbsp;Asia.</h1>
+        <p class="an-hero-sub">Anor turns MAS, BSP and SBV rules into software that watches every transaction, keeps customer data in the right country, and produces the records regulators ask for.</p>
+        <div class="an-actions">
+          <a class="an-btn an-btn--primary" href="{{ index $u "platform" }}">See the platform <span class="ar">&rarr;</span></a>
+          <a class="an-btn an-btn--ghost" href="{{ index $u "contact" }}">Talk to us</a>
+        </div>
+        <p class="an-hero-note">Founded 2018 · A*STAR spin-off · Based in Singapore</p>
+      </div>
+      <div class="an-hero-visual an-reveal d-2">
+        {{ partial "custom/anor-console.html" . }}
+      </div>
+    </div>
+  </section>
+
+  {{/* ---------- TRUST STRIP ---------- */}}
+  <div class="an-trust">
+    <div class="an-container an-trust-inner">
+      <span class="an-trust-lead">Built for regulated finance</span>
+      <span class="an-trust-item"><b>MAS</b> Singapore</span>
+      <span class="an-trust-item"><b>BSP</b> Philippines</span>
+      <span class="an-trust-item"><b>SBV</b> Vietnam</span>
+      <span class="an-trust-item">Data kept <b>in-country</b></span>
+      <span class="an-trust-item"><b>Append-only</b> audit</span>
+    </div>
+  </div>
+
+  {{/* ---------- FEATURE 1 · monitoring ---------- */}}
+  <section class="an-section">
+    <div class="an-container">
+      <div class="an-feature an-reveal">
+        <div class="an-feature-copy">
+          <p class="an-eyebrow">Monitoring</p>
+          <h2 class="an-h2">Every transaction, scored as it clears</h2>
+          <p class="an-lead">Payments stream in and are scored against the local rulebook in real time. Anything over the line is held before it settles — not flagged in a report the next morning.</p>
+          <ul class="an-feature-list">
+            <li>Corridor-aware risk scoring tuned to regional payment flows</li>
+            <li>Automatic holds on cross-border thresholds</li>
+            <li>Fewer false positives than tools built for other markets</li>
+          </ul>
+          <a class="an-link" href="{{ index $u "ai" }}">How the models work <span class="ar">&rarr;</span></a>
+        </div>
+        <div class="an-shot" data-parallax="0.06">
+          <div class="an-shot-label">Live transaction stream</div>
+          <table class="an-feed">
+            <tbody>
+              <tr><td class="t">09:41:22</td><td class="c">SG → PH</td><td class="a">₱ 84,200</td><td><span class="risk risk-lo">12</span></td><td class="s">Cleared</td></tr>
+              <tr class="flag"><td class="t">09:41:23</td><td class="c">PH → VN</td><td class="a">₫ 512.0M</td><td><span class="risk risk-hi">88</span></td><td class="s hold">Held</td></tr>
+              <tr><td class="t">09:41:24</td><td class="c">VN → SG</td><td class="a">S$ 41,300</td><td><span class="risk risk-md">57</span></td><td class="s rev">Review</td></tr>
+              <tr><td class="t">09:41:24</td><td class="c">SG → PH</td><td class="a">₱ 12,050</td><td><span class="risk risk-lo">19</span></td><td class="s">Cleared</td></tr>
+              <tr><td class="t">09:41:25</td><td class="c">SG → SG</td><td class="a">S$ 5,900</td><td><span class="risk risk-lo">07</span></td><td class="s">Cleared</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ---------- FEATURE 2 · rules as code ---------- */}}
+  <section class="an-section an-section--tight">
+    <div class="an-container">
+      <div class="an-feature rev an-reveal">
+        <div class="an-feature-copy">
+          <p class="an-eyebrow">Rulebook</p>
+          <h2 class="an-h2">Regulation, written as code</h2>
+          <p class="an-lead">Each directive becomes a versioned, testable rule that runs in the data path. When a regulator changes the threshold, you change one line — and every decision after it is provable.</p>
+          <ul class="an-feature-list">
+            <li>MAS, BSP and SBV mandates expressed as executable policy</li>
+            <li>Cross-border egress enforced, not documented</li>
+            <li>Every decision written to an append-only ledger</li>
+          </ul>
+          <a class="an-link" href="{{ index $u "reg" }}">Regulatory intelligence <span class="ar">&rarr;</span></a>
+        </div>
+        <div class="an-shot" data-parallax="0.06">
+          <div class="an-shot-label">policy / bsp.cross-border.anor</div>
+          <div class="an-code">
+<span class="ln"><span class="k">rule</span> <span class="s">"BSP cross-border"</span> {</span>
+<span class="ln">  <span class="k">when</span> corridor.<span class="f">crosses</span>(border)</span>
+<span class="ln">     <span class="k">and</span> amount &gt; <span class="f">PHP</span>(<span class="n">10_000_000</span>)</span>
+<span class="ln">  <span class="k">then</span> <span class="f">hold</span>()</span>
+<span class="ln">       <span class="f">retain_onshore</span>()  <span class="c">// data residency</span></span>
+<span class="ln">       ledger.<span class="f">append</span>(event)</span>
+<span class="ln">}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ---------- FEATURE 3 · deployment ---------- */}}
+  <section class="an-section an-section--tight">
+    <div class="an-container">
+      <div class="an-feature an-reveal">
+        <div class="an-feature-copy">
+          <p class="an-eyebrow">Deployment</p>
+          <h2 class="an-h2">Runs where your bank already runs</h2>
+          <p class="an-lead">Connect over APIs to core banking and payment rails. Deploy in your cloud, a private data centre, or a mix — with the same controls and the same audit trail everywhere.</p>
+          <a class="an-link" href="{{ index $u "api" }}">API-first integration <span class="ar">&rarr;</span></a>
+        </div>
+        <div class="an-shot">
+          <div class="an-shot-label">Deployment target</div>
+          <div class="an-seg" role="tablist">
+            <input type="radio" name="dep" id="dep-cloud" checked>
+            <input type="radio" name="dep" id="dep-onprem">
+            <input type="radio" name="dep" id="dep-hybrid">
+            <label for="dep-cloud">Public cloud</label>
+            <label for="dep-onprem">On-premise</label>
+            <label for="dep-hybrid">Hybrid</label>
+            <span class="thumb" aria-hidden="true"></span>
+          </div>
+          <p class="an-deploy-note">Zero-trust at every layer · same rulebook across targets</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ---------- JURISDICTIONS ---------- */}}
+  <section class="an-section an-section--tight">
+    <div class="an-container">
+      <div class="an-section-head an-reveal">
+        <p class="an-eyebrow">Coverage</p>
+        <h2 class="an-h2">Three regulators, one system</h2>
+        <p class="an-lead" style="margin:0 auto;">Each country writes its own rules on where data lives and how banks report. We cover the three we know best.</p>
+      </div>
+      <div class="an-jur-row an-reveal">
+        <div class="an-jur-cell"><div class="an-jur-code">MAS</div><div class="an-jur-name">Monetary Authority of Singapore</div><div class="an-jur-sub">Central bank &amp; financial regulator</div></div>
+        <div class="an-jur-cell"><div class="an-jur-code">BSP</div><div class="an-jur-name">Bangko Sentral ng Pilipinas</div><div class="an-jur-sub">Central bank &amp; financial regulator</div></div>
+        <div class="an-jur-cell"><div class="an-jur-code">SBV</div><div class="an-jur-name">State Bank of Vietnam</div><div class="an-jur-sub">Central bank &amp; financial regulator</div></div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ---------- METRICS ---------- */}}
+  <div class="an-metrics an-reveal">
+    <div class="an-metric"><div class="an-metric-num an-num">2018</div><div class="an-metric-label">Founded in Singapore</div></div>
+    <div class="an-metric"><div class="an-metric-num">A*STAR</div><div class="an-metric-label">Deep-tech origin</div></div>
+    <div class="an-metric"><div class="an-metric-num an-num">3</div><div class="an-metric-label">Regulators · SG PH VN</div></div>
+    <div class="an-metric"><div class="an-metric-num an-num">0</div><div class="an-metric-label">Rip-and-replace</div></div>
+  </div>
+
+  {{/* ---------- CTA ---------- */}}
+  <section class="an-section">
+    <div class="an-container">
+      <div class="an-cta an-reveal">
+        <h2 class="an-h2">Tell us what you're working with.</h2>
+        <p>If you run compliance or technology at a bank or payments firm in the region, we'll show you how Anor fits.</p>
+        <div class="an-actions">
+          <a class="an-btn an-btn--accent" href="{{ index $u "contact" }}">Talk to us <span class="ar">&rarr;</span></a>
+          <a class="an-btn an-btn--ghost" href="{{ index $u "platform" }}">See the platform</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{{ partial "custom/anor-motion.html" . }}
+{{ partial "custom/anor-depth.html" . }}
+{{ end }}

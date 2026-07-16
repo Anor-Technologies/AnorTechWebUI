@@ -1,0 +1,51 @@
+{{/* Anor depth engine — pointer-tilt on [data-tilt] layers and scroll-parallax
+     on [data-parallax] elements. Transform-only, rAF-batched, reduced-motion safe.
+     No decoration: motion serves the product mockups' sense of physical depth. */}}
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+
+  // ---- pointer tilt: a stage rotates toward the cursor; inner layers lift by depth
+  document.querySelectorAll('[data-tilt]').forEach(function (stage) {
+    var max = parseFloat(stage.getAttribute('data-tilt')) || 6;
+    var rx = 0, ry = 0, trx = 0, try_ = 0, raf = null;
+    function apply() {
+      rx += (trx - rx) * 0.08; ry += (try_ - ry) * 0.08;
+      stage.style.setProperty('--rx', rx.toFixed(3) + 'deg');
+      stage.style.setProperty('--ry', ry.toFixed(3) + 'deg');
+      if (Math.abs(trx - rx) > 0.01 || Math.abs(try_ - ry) > 0.01) raf = requestAnimationFrame(apply);
+      else raf = null;
+    }
+    function tick() { if (!raf) raf = requestAnimationFrame(apply); }
+    stage.addEventListener('pointermove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      try_ = px * max; trx = -py * max; tick();
+    });
+    stage.addEventListener('pointerleave', function () { trx = 0; try_ = 0; tick(); });
+  });
+
+  // ---- scroll parallax: translateY by a per-element speed factor
+  var items = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  if (items.length) {
+    var ticking = false;
+    function onScroll() {
+      var vh = window.innerHeight;
+      items.forEach(function (el) {
+        var speed = parseFloat(el.getAttribute('data-parallax')) || 0.1;
+        var r = el.getBoundingClientRect();
+        var mid = r.top + r.height / 2;
+        var off = (mid - vh / 2) / vh; // -0.5..0.5 across viewport
+        el.style.transform = 'translate3d(0,' + (off * speed * -100).toFixed(1) + 'px,0)';
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+  }
+})();
+</script>
