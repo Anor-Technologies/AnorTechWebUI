@@ -1,9 +1,19 @@
-{{/* Anor Technologies type system — Inter (interface), IBM Plex Mono (technical/data), Spectral (editorial intelligence). */}}
+{{/* Anor design system head — owned by the theme so child sites need no layout
+     overrides (Isomer model: child = content + config + logo only). */}}
+
+{{/* Dark-only experience — force the theme's dark mode before paint and pin it. */}}
+<script>try{localStorage.setItem('theme','dark');}catch(e){}var r=document.documentElement;r.classList.remove('light');r.classList.add('dark');new MutationObserver(function(){if(!r.classList.contains('dark')){r.classList.remove('light');r.classList.add('dark');}}).observe(r,{attributes:true,attributeFilter:['class']});</script>
+
+{{/* Type system — Inter (interface), IBM Plex Mono (technical/data), Spectral (editorial). */}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap"
   rel="stylesheet"
 />
-{{/* Anor is a dark-only experience — force the theme's dark mode and pin it. */}}
-<script>try{localStorage.setItem('theme','dark');}catch(e){}document.documentElement.classList.add('dark');</script>
+
+{{/* Instant-feel navigation — prefetch in-viewport links. */}}
+<script defer src="https://cdn.jsdelivr.net/npm/quicklink@3.0.1/dist/quicklink.umd.js"></script>
+<script>
+  window.addEventListener('load', function () { if (window.quicklink) quicklink.listen(); });
+</script>
