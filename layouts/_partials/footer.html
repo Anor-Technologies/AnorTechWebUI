@@ -1,22 +1,20 @@
-{{/* Anor design-system footer. Config-driven where available, with sensible
-     built-in defaults so it renders on any child site:
-       params.description, params.footer_status, params.copyright,
-       params.social, and (optional) site.Menus.footer to override "Platform". */}}
+{{/* Design-system footer — fully config-driven so any child site brands it
+     without layout overrides:
 
-{{- $platform := site.Menus.footer -}}
-{{- if not $platform -}}
-  {{- $platform = slice
-      (dict "Name" "Platform overview" "URL" "/what-we-do")
-      (dict "Name" "Regulatory intelligence" "URL" "/what-we-do/regulatory-intelligence")
-      (dict "Name" "AI-driven analysis" "URL" "/what-we-do/ai-driven-analysis")
-      (dict "Name" "API-first integration" "URL" "/what-we-do/api-first-integration") -}}
-{{- end -}}
-{{- $company := slice
-    (dict "Name" "About" "URL" "/who-we-are/about-anor-technologies")
-    (dict "Name" "Our people" "URL" "/who-we-are/our-people")
-    (dict "Name" "Careers" "URL" "/join-us")
-    (dict "Name" "Newsroom" "URL" "/news-room")
-    (dict "Name" "Contact" "URL" "/contact-us") -}}
+       params.brand.name / params.brand.suffix   wordmark ("ANOR" + "Technologies")
+       params.description                         tagline
+       params.footer_status                       mono status line
+       params.footer_social                       list of {title, link}
+       params.copyright                           bottom line (markdown ok)
+       params.footer_mark                         small mono mark (e.g. "Singapore")
+       params.footer_legal                        list of {name, url}
+       menu.footer                                first link column
+       menu.footer_company                        second link column
+       params.footer_col1 / params.footer_col2    column headings
+*/}}
+{{- $b := site.Params.brand | default dict -}}
+{{- $name := $b.name | default site.Title -}}
+{{- $suffix := $b.suffix | default "" -}}
 
 <footer class="an-footer">
   <div class="an-footer-inner">
@@ -24,33 +22,37 @@
 
       <div class="an-footer-brand">
         <a class="an-footer-logo" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ site.Title }}">
-          <span>ANOR</span> Technologies
+          <span>{{ $name }}</span>{{ with $suffix }} {{ . }}{{ end }}
         </a>
         {{ with site.Params.description }}<p class="an-footer-tagline">{{ . }}</p>{{ end }}
         {{ with site.Params.footer_status }}<span class="an-footer-status">{{ . }}</span>{{ end }}
       </div>
 
-      <nav class="an-footer-col" aria-label="Platform">
-        <p class="an-footer-heading">Platform</p>
+      {{ with site.Menus.footer }}
+      <nav class="an-footer-col" aria-label="{{ site.Params.footer_col1 | default "Platform" }}">
+        <p class="an-footer-heading">{{ site.Params.footer_col1 | default "Platform" }}</p>
         <ul>
-          {{- range $platform }}
+          {{- range . }}
           <li><a href="{{ if findRE `^http` .URL }}{{ .URL }}{{ else }}{{ .URL | relLangURL }}{{ end }}"{{ if findRE `^http` .URL }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
           {{- end }}
         </ul>
       </nav>
+      {{ end }}
 
-      <nav class="an-footer-col" aria-label="Company">
-        <p class="an-footer-heading">Company</p>
+      {{ with site.Menus.footer_company }}
+      <nav class="an-footer-col" aria-label="{{ site.Params.footer_col2 | default "Company" }}">
+        <p class="an-footer-heading">{{ site.Params.footer_col2 | default "Company" }}</p>
         <ul>
-          {{- range $company }}
-          <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+          {{- range . }}
+          <li><a href="{{ if findRE `^http` .URL }}{{ .URL }}{{ else }}{{ .URL | relLangURL }}{{ end }}"{{ if findRE `^http` .URL }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
           {{- end }}
         </ul>
       </nav>
+      {{ end }}
 
       {{ with site.Params.footer_social }}
       <div class="an-footer-col">
-        <p class="an-footer-heading">Connect</p>
+        <p class="an-footer-heading">{{ site.Params.footer_col3 | default "Connect" }}</p>
         <ul>
           {{- range . }}
           <li><a href="{{ .link | safeURL }}"{{ if not (hasPrefix .link "mailto:") }} target="_blank" rel="noopener"{{ end }}>{{ .title }}</a></li>
@@ -63,12 +65,14 @@
 
     <div class="an-footer-bottom">
       <p class="an-footer-copy">
-        {{ if site.Params.copyright }}{{ site.Params.copyright | markdownify }}{{ else }}&copy; {{ now.Year }} {{ site.Title }} Pte Ltd.{{ end }}
+        {{ if site.Params.copyright }}{{ site.Params.copyright | markdownify }}{{ else }}&copy; {{ now.Year }} {{ site.Title }}.{{ end }}
       </p>
       <div class="an-footer-legal">
-        <a href="{{ "/privacy-statement" | relLangURL }}">Privacy</a>
-        <a href="{{ "/terms-of-use" | relLangURL }}">Terms</a>
-        <span class="an-footer-mark">Singapore</span>
+        {{- $legal := site.Params.footer_legal | default (slice (dict "name" "Privacy" "url" "/privacy-statement") (dict "name" "Terms" "url" "/terms-of-use")) -}}
+        {{- range $legal }}
+        <a href="{{ .url | relLangURL }}">{{ .name }}</a>
+        {{- end }}
+        {{ with site.Params.footer_mark }}<span class="an-footer-mark">{{ . }}</span>{{ end }}
       </div>
     </div>
   </div>

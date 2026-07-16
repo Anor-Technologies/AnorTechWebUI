@@ -16,22 +16,22 @@
   --fnt: #5B6472;
   --ln:  rgba(255,255,255,0.06);
   --ln2: rgba(255,255,255,0.11);
-  --ac:  #F27127;   /* Anor accent — used with intent, never as decoration */
-  --ac2: #F79153;
-  --ac-ink: #1A1206;
+  --ac:  var(--brand-accent, #F27127);        /* brand accent — from child config */
+  --ac2: var(--brand-accent-hover, #F79153);
+  --ac-ink: var(--brand-accent-ink, #1A1206);
   --ok:  #35C08A;
   --warn:#E7B03D;
   --hi:  #F0564C;
   --info:#5B8CF7;
   --r1: 8px; --r2: 12px; --r3: 18px;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+  --sans: var(--brand-font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  --mono: var(--brand-font-mono, 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace);
   --shadow: 0 30px 60px -30px rgba(0,0,0,0.7);
   --maxw: 1180px;
 
   width: 100vw; position: relative; left: 50%; right: 50%;
   margin-left: -50vw; margin-right: -50vw;
-  background: linear-gradient(180deg, #080B15 0%, #06080F 55%, #05070C 100%);
+  background: linear-gradient(180deg, var(--brand-bg-1, #080B15) 0%, var(--brand-bg-2, #06080F) 55%, var(--brand-bg-3, #05070C) 100%);
   color: var(--tx);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
@@ -44,8 +44,8 @@
 .anor::before {
   content: ''; position: fixed; inset: -10% 0 0 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(46% 40% at 80% 6%, rgba(84,116,238,0.20), transparent 68%),
-    radial-gradient(40% 32% at 12% 0%, rgba(242,113,39,0.12), transparent 66%),
+    radial-gradient(46% 40% at 80% 6%, var(--brand-glow-1, rgba(84,116,238,0.20)), transparent 68%),
+    radial-gradient(40% 32% at 12% 0%, var(--brand-glow-2, rgba(242,113,39,0.12)), transparent 66%),
     radial-gradient(70% 50% at 50% 116%, rgba(48,70,170,0.16), transparent 70%);
   animation: an-aurora 26s ease-in-out infinite alternate;
 }
@@ -152,7 +152,7 @@ body { font-family: var(--sans); }
   -webkit-backdrop-filter: blur(20px) saturate(1.3);
   border: 1px solid var(--glass-edge);
   border-radius: 16px;
-  box-shadow: var(--shadow), 0 1px 0 rgba(255,255,255,0.10) inset, 0 0 60px -20px rgba(84,116,238,0.35);
+  box-shadow: var(--shadow), 0 1px 0 rgba(255,255,255,0.10) inset, 0 0 60px -20px var(--brand-glow-1, rgba(84,116,238,0.35));
   overflow: hidden;
   will-change: transform;
 }
@@ -231,7 +231,7 @@ body { font-family: var(--sans); }
 .an-feature-copy h2 { margin-bottom: 16px; }
 .an-feature-list { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 12px; }
 .an-feature-list li { display: flex; gap: 12px; font-size: 15px; color: var(--mut); line-height: 1.5; }
-.an-feature-list li::before { content: ''; flex: 0 0 auto; width: 16px; height: 16px; margin-top: 3px; border-radius: 5px; background: rgba(242,113,39,.12); border: 1px solid rgba(242,113,39,.4); background-image: linear-gradient(135deg, transparent 46%, var(--ac) 46%, var(--ac) 54%, transparent 54%); background-size: 10px 10px; background-position: center; background-repeat: no-repeat; }
+.an-feature-list li::before { content: ''; flex: 0 0 auto; width: 16px; height: 16px; margin-top: 3px; border-radius: 5px; background-color: color-mix(in srgb, var(--ac) 12%, transparent); border: 1px solid color-mix(in srgb, var(--ac) 40%, transparent); background-image: linear-gradient(135deg, transparent 46%, var(--ac) 46%, var(--ac) 54%, transparent 54%); background-size: 10px 10px; background-position: center; background-repeat: no-repeat; }
 .an-feature-copy .an-link { margin-top: 26px; }
 
 /* generic product-shot frame */
@@ -301,7 +301,7 @@ body { font-family: var(--sans); }
    CTA
    ============================================================================ */
 .an-cta { position: relative; text-align: center; max-width: 900px; margin: 0 auto; padding: clamp(48px,7vw,88px) clamp(24px,5vw,64px); border: 1px solid var(--glass-edge); border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012)); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, var(--shadow); }
-.an-cta::before { content: ''; position: absolute; left: 50%; top: -40%; width: 120%; height: 120%; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side, rgba(84,116,238,0.20), transparent 70%); }
+.an-cta::before { content: ''; position: absolute; left: 50%; top: -40%; width: 120%; height: 120%; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side, var(--brand-glow-1, rgba(84,116,238,0.20)), transparent 70%); }
 .an-cta > * { position: relative; }
 .an-cta h2 { margin-bottom: 16px; }
 .an-cta p { color: var(--mut); font-size: 1.1rem; margin: 0 auto 30px; max-width: 46ch; }
@@ -350,16 +350,16 @@ body { font-family: var(--sans); }
    ============================================================================ */
 .an-footer {
   --f-tx: #F4F6F9; --f-mut: #8B94A3; --f-fnt: #5B6472;
-  --f-ln: rgba(255,255,255,0.08); --f-ac: #F27127;
+  --f-ln: rgba(255,255,255,0.08); --f-ac: var(--brand-accent, #F27127);
   position: relative;
-  background: linear-gradient(180deg, #06080F, #04060B);
+  background: linear-gradient(180deg, var(--brand-bg-2, #06080F), var(--brand-bg-3, #04060B));
   border-top: 1px solid var(--f-ln);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--brand-font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
   color: var(--f-mut);
 }
 .an-footer::before {
   content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px; pointer-events: none;
-  background: radial-gradient(60% 100% at 50% 0%, rgba(242,113,39,0.55), transparent 70%);
+  background: radial-gradient(60% 100% at 50% 0%, color-mix(in srgb, var(--brand-accent, #F27127) 55%, transparent), transparent 70%);
 }
 .an-footer-inner { max-width: 1180px; margin: 0 auto; padding: clamp(56px,7vw,88px) clamp(20px,5vw,48px) 40px; }
 .an-footer-grid {
@@ -374,12 +374,12 @@ body { font-family: var(--sans); }
 .an-footer-tagline { margin: 16px 0 0; max-width: 34ch; font-size: 14px; line-height: 1.6; color: var(--f-mut); }
 .an-footer-status {
   display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11.5px; letter-spacing: .06em; color: var(--f-fnt);
+  font-family: var(--brand-font-mono, 'IBM Plex Mono', ui-monospace, monospace); font-size: 11.5px; letter-spacing: .06em; color: var(--f-fnt);
 }
 .an-footer-status::before { content: ''; width: 6px; height: 6px; border-radius: 2px; background: #35C08A; box-shadow: 0 0 8px rgba(53,192,138,.5); }
 
 .an-footer-heading {
-  margin: 0 0 18px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  margin: 0 0 18px; font-family: var(--brand-font-mono, 'IBM Plex Mono', ui-monospace, monospace);
   font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--f-fnt);
 }
 .an-footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
@@ -395,4 +395,4 @@ body { font-family: var(--sans); }
 .an-footer-legal { display: flex; align-items: center; gap: 22px; }
 .an-footer-legal a { font-size: 12.5px; color: var(--f-fnt); text-decoration: none; transition: color .18s; }
 .an-footer-legal a:hover { color: var(--f-tx); }
-.an-footer-mark { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--f-fnt); }
+.an-footer-mark { font-family: var(--brand-font-mono, 'IBM Plex Mono', ui-monospace, monospace); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--f-fnt); }

@@ -1,16 +1,45 @@
-{{/* Anor design system head — owned by the theme so child sites need no layout
-     overrides (Isomer model: child = content + config + logo only). */}}
+{{/* AnorTechWebUI design-system head — theme owns all design; child sites
+     brand themselves purely through config (Isomer model):
 
-{{/* Dark-only experience — force the theme's dark mode before paint and pin it. */}}
+     params:
+       brand:
+         name: "ANOR"            # accent part of the wordmark
+         suffix: "Technologies"  # rest of the wordmark
+         accent: "#F27127"
+         accentHover: "#F79153"
+         accentInk: "#1A1206"    # text on accent surfaces
+         bg1/bg2/bg3: page background gradient stops (dark ink tones)
+         glow1/glow2: rgba() lighting anchors (cool + warm)
+         fontsUrl: full Google Fonts stylesheet URL
+         fontSans / fontMono: font-family stacks
+         forceDark: true         # pin the dark shell (default true)
+*/}}
+{{- $b := site.Params.brand | default dict -}}
+{{- $forceDark := true -}}{{- if isset $b "forcedark" }}{{ $forceDark = $b.forcedark }}{{ end -}}
+
+{{- if $forceDark }}
 <script>try{localStorage.setItem('theme','dark');}catch(e){}var r=document.documentElement;r.classList.remove('light');r.classList.add('dark');new MutationObserver(function(){if(!r.classList.contains('dark')){r.classList.remove('light');r.classList.add('dark');}}).observe(r,{attributes:true,attributeFilter:['class']});</script>
+{{- end }}
 
-{{/* Type system — Inter (interface), IBM Plex Mono (technical/data), Spectral (editorial). */}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap"
-  rel="stylesheet"
-/>
+<link href="{{ $b.fontsurl | default `https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap` }}" rel="stylesheet" />
+
+{{/* Brand tokens — every design-system surface reads these variables. */}}
+<style>
+  :root {
+    --brand-accent: {{ $b.accent | default "#F27127" | safeCSS }};
+    --brand-accent-hover: {{ $b.accenthover | default "#F79153" | safeCSS }};
+    --brand-accent-ink: {{ $b.accentink | default "#1A1206" | safeCSS }};
+    --brand-bg-1: {{ $b.bg1 | default "#080B15" | safeCSS }};
+    --brand-bg-2: {{ $b.bg2 | default "#06080F" | safeCSS }};
+    --brand-bg-3: {{ $b.bg3 | default "#05070C" | safeCSS }};
+    --brand-glow-1: {{ $b.glow1 | default "rgba(84,116,238,0.20)" | safeCSS }};
+    --brand-glow-2: {{ $b.glow2 | default "rgba(242,113,39,0.12)" | safeCSS }};
+    --brand-font-sans: {{ $b.fontsans | default "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" | safeCSS }};
+    --brand-font-mono: {{ $b.fontmono | default "'IBM Plex Mono', ui-monospace, 'SF Mono', monospace" | safeCSS }};
+  }
+</style>
 
 {{/* Instant-feel navigation — prefetch in-viewport links. */}}
 <script defer src="https://cdn.jsdelivr.net/npm/quicklink@3.0.1/dist/quicklink.umd.js"></script>
