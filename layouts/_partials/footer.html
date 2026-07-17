@@ -66,7 +66,6 @@
     <div class="an-footer-bottom">
       <p class="an-footer-copy">
         {{ if site.Params.copyright }}{{ site.Params.copyright | markdownify }}{{ else }}&copy; {{ now.Year }} {{ site.Title }}.{{ end }}
-        <span class="an-footer-built">· {{ (T "builtWith") | default "Built with [AnorTechWebUI](https://github.com/Anor-Technologies/AnorTechWebUI) by ANOR Technologies" | markdownify }}</span>
       </p>
       <div class="an-footer-legal">
         {{- $legal := site.Params.footer_legal | default (slice (dict "name" "Privacy" "url" "/privacy-statement") (dict "name" "Terms" "url" "/terms-of-use")) -}}
