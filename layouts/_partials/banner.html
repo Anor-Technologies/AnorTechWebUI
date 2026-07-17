@@ -5,7 +5,9 @@
       {{- . -}}
     {{- else -}}
       <div style="white-space: pre-wrap" class="hx:px-8">
-        {{- site.Params.banner.message | default "🎉 Welcome! This is a banner message." | .RenderString -}}
+        {{- $company := site.Params.brand.company | default site.Title -}}
+        {{- $standard := (T "bannerScam" $company) | default (printf "%s employees will never ask you to transfer money or disclose bank log-in details over a phone call or email." $company) -}}
+        {{- site.Params.banner.message | default $standard | .RenderString -}}
       </div>
     {{- end -}}
     <button
