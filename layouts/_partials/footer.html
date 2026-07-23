@@ -21,8 +21,13 @@
     <div class="an-footer-grid">
 
       <div class="an-footer-brand">
-        <a class="an-footer-logo" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ site.Title }}">
-          <span>{{ $name }}</span>{{ with $suffix }} {{ . }}{{ end }}
+        {{- $footerLogo := site.Params.footer_logo -}}
+        <a class="an-footer-logo{{ if $footerLogo }} an-footer-logo--img{{ end }}" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ site.Title }}">
+          {{- if $footerLogo -}}
+            <img class="an-footer-logo-img" src="{{ $footerLogo | relURL }}" alt="{{ site.Title }}" loading="lazy" />
+          {{- else -}}
+            <span>{{ $name }}</span>{{ with $suffix }} {{ . }}{{ end }}
+          {{- end -}}
         </a>
         {{ with site.Params.description }}<p class="an-footer-tagline">{{ . }}</p>{{ end }}
         {{ with site.Params.footer_status }}<span class="an-footer-status">{{ . }}</span>{{ end }}

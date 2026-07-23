@@ -374,6 +374,8 @@ body { font-family: var(--sans); }
 
 .an-footer-logo { display: inline-block; font-size: 19px; font-weight: 600; letter-spacing: -.02em; color: var(--f-tx); text-decoration: none; }
 .an-footer-logo span { color: var(--f-ac); }
+.an-footer-logo--img { line-height: 0; }
+.an-footer-logo-img { display: block; height: 56px; width: auto; }
 .an-footer-tagline { margin: 16px 0 0; max-width: 34ch; font-size: 14px; line-height: 1.6; color: var(--f-mut); }
 .an-footer-status {
   display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
