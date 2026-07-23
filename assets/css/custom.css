@@ -400,4 +400,8 @@ body { font-family: var(--sans); }
 .an-footer-legal { display: flex; align-items: center; gap: 22px; }
 .an-footer-legal a { font-size: 12.5px; color: var(--f-fnt); text-decoration: none; transition: color .18s; }
 .an-footer-legal a:hover { color: var(--f-tx); }
+.an-footer-icp { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--f-ln); }
+.an-footer-icp a { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--f-fnt); text-decoration: none; transition: color .18s; }
+.an-footer-icp a:hover { color: var(--f-tx); }
+.an-footer-police { display: inline-block; vertical-align: middle; }
 .an-footer-mark { font-family: var(--brand-font-mono, 'IBM Plex Mono', ui-monospace, monospace); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--f-fnt); }

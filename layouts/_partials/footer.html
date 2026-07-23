@@ -80,5 +80,22 @@
         {{ with site.Params.footer_mark }}<span class="an-footer-mark">{{ . }}</span>{{ end }}
       </div>
     </div>
+
+    {{- /* Optional ICP / public-security filing line (China compliance).
+           params.icp: { number, url (internal record page or beian), icon,
+           police_number, police_url }. Absent on non-CN sites. */ -}}
+    {{- with site.Params.icp }}
+    {{- $u := .url | default "https://beian.miit.gov.cn/" -}}
+    {{- $ext := hasPrefix $u "http" -}}
+    <div class="an-footer-icp">
+      <a href="{{ if $ext }}{{ $u }}{{ else }}{{ $u | relLangURL }}{{ end }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}>
+        {{- with .icon }}<img class="an-footer-police" src="{{ . | relURL }}" alt="" width="15" height="15" loading="lazy" />{{ end -}}
+        <span>{{ .number }}</span>
+      </a>
+      {{- with .police_number }}
+      <a href="{{ $.Site.Params.icp.police_url | default `https://beian.mps.gov.cn/` }}" target="_blank" rel="noopener">{{ . }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
   </div>
 </footer>
