@@ -19,6 +19,9 @@
   --ac:  var(--brand-accent, #F27127);        /* brand accent — from child config */
   --ac2: var(--brand-accent-hover, #F79153);
   --ac-ink: var(--brand-accent-ink, #1A1206);
+  --cta: var(--brand-cta, var(--brand-accent, #F27127));  /* CTA action button — falls back to accent */
+  --cta2: var(--brand-cta-hover, var(--brand-accent-hover, #F79153));
+  --cta-ink: var(--brand-cta-ink, var(--brand-accent-ink, #1A1206));
   --ok:  #35C08A;
   --warn:#E7B03D;
   --hi:  #F0564C;
@@ -104,8 +107,8 @@ body { font-family: var(--sans); }
 .an-btn:hover { transform: translateY(-1px); }
 .an-btn--primary { background: #fff; color: #0A0C10; }
 .an-btn--primary:hover { background: #E9ECF2; }
-.an-btn--accent { background: var(--ac); color: var(--ac-ink); font-weight: 600; }
-.an-btn--accent:hover { background: var(--ac2); }
+.an-btn--accent { background: var(--cta); color: var(--cta-ink); font-weight: 600; }
+.an-btn--accent:hover { background: var(--cta2); }
 .an-btn--ghost { color: var(--tx); border-color: var(--ln2); background: rgba(255,255,255,0.02); }
 .an-btn--ghost:hover { border-color: rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); }
 .an-btn .ar { transition: transform .18s; }

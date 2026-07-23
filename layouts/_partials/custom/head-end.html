@@ -31,6 +31,11 @@
     --brand-accent: {{ $b.accent | default "#F27127" | safeCSS }};
     --brand-accent-hover: {{ $b.accenthover | default "#F79153" | safeCSS }};
     --brand-accent-ink: {{ $b.accentink | default "#1A1206" | safeCSS }};
+    {{/* Optional CTA accent — colors the primary action button (.an-btn--accent).
+         Defaults to the brand accent so sites that don't set it are unchanged. */}}
+    --brand-cta: {{ $b.accentcta | default ($b.accent | default "#F27127") | safeCSS }};
+    --brand-cta-hover: {{ $b.accentctahover | default ($b.accenthover | default "#F79153") | safeCSS }};
+    --brand-cta-ink: {{ $b.accentctaink | default ($b.accentink | default "#1A1206") | safeCSS }};
     --brand-bg-1: {{ $b.bg1 | default "#080B15" | safeCSS }};
     --brand-bg-2: {{ $b.bg2 | default "#06080F" | safeCSS }};
     --brand-bg-3: {{ $b.bg3 | default "#05070C" | safeCSS }};
