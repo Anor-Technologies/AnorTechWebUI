@@ -123,3 +123,35 @@
 {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) -}}
 <script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $crumbs) | jsonify | safeJS }}</script>
 {{- end }}
+
+{{/* Light navbar / footer brand plate. Emitted only when a site sets
+     brand.navbarBg, so every other site renders exactly as before.
+
+       brand:
+         navbarBg: "#FFFFFF"     # navbar + mobile panel surface
+         navbarInk: "#101A2E"    # link and icon colour on that surface
+         footerLogoPlate: true   # light plate behind the footer logo
+     Use when the logo keeps dark brand colours that would vanish on the
+     dark shell — change the surface, not the logo. */}}
+{{- with $b.navbarbg }}
+{{- $ink := $b.navbarink | default "#101A2E" -}}
+<style>
+  .anortechwebui-nav-container-blur { background: {{ . | safeCSS }} !important; box-shadow: 0 1px 0 rgba(0,0,0,.10) !important; }
+  .anortechwebui-nav-container a,
+  .anortechwebui-nav-container button,
+  .anortechwebui-nav-container .anortechwebui-nav-menu-toggle { color: {{ $ink | safeCSS }} !important; }
+  .anortechwebui-nav-container a:hover,
+  .anortechwebui-nav-container button:hover { color: {{ $ink | safeCSS }} !important; opacity: .68; }
+  .an-mobile-nav { background: {{ . | safeCSS }}; border-top-color: rgba(0,0,0,.10); border-bottom-color: rgba(0,0,0,.10); }
+  .an-mobile-nav a { color: {{ $ink | safeCSS }}; border-bottom-color: rgba(0,0,0,.08); }
+  .an-mobile-nav a.an-mobile-nav-sub { color: {{ $ink | safeCSS }}; opacity: .72; }
+</style>
+{{- end }}
+{{- if $b.footerlogoplate }}
+<style>
+  .an-footer-logo--img .an-footer-logo-img {
+    background: {{ $b.navbarbg | default "#FFFFFF" | safeCSS }};
+    border-radius: 10px; padding: 9px 13px;
+  }
+</style>
+{{- end }}
