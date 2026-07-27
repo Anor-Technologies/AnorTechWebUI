@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+{{ range site.Params.seo.disallow }}Disallow: {{ . }}
+{{ end }}
+Sitemap: {{ "sitemap.xml" | absURL }}

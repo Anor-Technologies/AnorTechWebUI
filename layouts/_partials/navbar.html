@@ -56,4 +56,33 @@
       {{- partial "utils/icon.html" (dict "name" "hamburger-menu" "attributes" (printf "height=%d" $iconHeight)) -}}
     </button>
   </nav>
+
+  {{/* Mobile navigation panel. The design-system layouts (an-home / an-page)
+       render no sidebar, and the navbar links are hidden below md — without
+       this there is no navigation at all on phones. Toggled by menu.js. */}}
+  <div class="an-mobile-nav" id="an-mobile-nav" hidden>
+    <nav aria-label="{{ (T "menu") | default "Menu" }}">
+      {{- range .Site.Menus.main -}}
+        {{- $t := .Params.type -}}
+        {{- if not (or (eq $t "search") (eq $t "theme-toggle") (eq $t "language-switch")) -}}
+          {{- $link := .URL -}}
+          {{- $external := strings.HasPrefix $link "http" -}}
+          {{- with .PageRef -}}
+            {{- if hasPrefix . "/" -}}{{- $link = relLangURL (strings.TrimPrefix "/" .) -}}{{- end -}}
+          {{- end -}}
+          {{- $active := or ($page.HasMenuCurrent "main" .) ($page.IsMenuCurrent "main" .) -}}
+          <a href="{{ $link }}"{{ if $external }} target="_blank" rel="noreferrer"{{ end }}{{ if $active }} aria-current="page"{{ end }}>
+            {{- or (T .Identifier) .Name | safeHTML -}}
+          </a>
+          {{- range .Children -}}
+            {{- $clink := .URL -}}
+            {{- with .PageRef -}}
+              {{- if hasPrefix . "/" -}}{{- $clink = relLangURL (strings.TrimPrefix "/" .) -}}{{- end -}}
+            {{- end -}}
+            <a class="an-mobile-nav-sub" href="{{ $clink }}">{{ or (T .Identifier) .Name | safeHTML }}</a>
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    </nav>
+  </div>
 </div>
