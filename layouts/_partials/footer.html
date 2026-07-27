@@ -24,7 +24,9 @@
         {{- $footerLogo := site.Params.footer_logo -}}
         <a class="an-footer-logo{{ if $footerLogo }} an-footer-logo--img{{ end }}" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ site.Title }}">
           {{- if $footerLogo -}}
-            <img class="an-footer-logo-img" src="{{ $footerLogo | relURL }}" alt="{{ site.Title }}" loading="lazy" />
+            {{- $footerLogoURL := $footerLogo | relURL -}}
+            {{- with resources.Get $footerLogo }}{{ $footerLogoURL = (. | fingerprint "md5").RelPermalink }}{{ end -}}
+            <img class="an-footer-logo-img" src="{{ $footerLogoURL }}" alt="{{ site.Title }}" loading="lazy" />
           {{- else -}}
             <span>{{ $name }}</span>{{ with $suffix }} {{ . }}{{ end }}
           {{- end -}}
